@@ -14,21 +14,26 @@ npm run dev
 
 ## Devlogの更新方法
 
-`content/devlog/` に Markdown ファイルを1つ追加するだけで、devlog一覧・個別ページ・トップページの最新3件に自動で反映される。ビルドやコードの変更は不要。
+`lib/devlog.js` の `devlogPosts` 配列にオブジェクトを1つ追加するだけ。Markdownではなく、そのままJSXで本文を書く。
 
-ファイル名は `YYYY-MM-DD-slug.md` の形式を推奨（URLの `/devlog/<ファイル名>` になる）。
-
-```markdown
----
-title: "記事タイトル"
-date: "2026-09-20"
-excerpt: "一覧に出す一言サマリー（任意）"
----
-
-本文はここにMarkdownで書く。
+```jsx
+{
+  slug: "2026-09-20-alpha-update", // URLの /devlog/<slug> になる
+  title: "記事タイトル",
+  date: "2026-09-20",
+  excerpt: "一覧に出す一言サマリー（任意）",
+  body: (
+    <>
+      <p>本文はここに直接JSXで書く。</p>
+      <ul>
+        <li>箇条書きもそのままJSXタグで</li>
+      </ul>
+    </>
+  ),
+},
 ```
 
-追加したら `git add` → `git commit` → `git push` するだけで、Vercelに接続していれば自動デプロイされる。
+配列に足したら `git add` → `git commit` → `git push` するだけで、devlog一覧・個別ページ・トップページの最新3件に反映され、Vercelに接続していれば自動デプロイされる。
 
 ## Vercelへのデプロイ
 

@@ -6,22 +6,17 @@ export function generateStaticParams() {
   return getAllDevlogSlugs().map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }) {
-  try {
-    const post = getDevlogPost(params.slug);
-    return { title: `${post.title} | Paranoia Devlog` };
-  } catch {
-    return {};
-  }
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = getDevlogPost(slug);
+  if (!post) return {};
+  return { title: `${post.title} | Paranoia Devlog` };
 }
 
-export default function DevlogPostPage({ params }) {
-  let post;
-  try {
-    post = getDevlogPost(params.slug);
-  } catch {
-    notFound();
-  }
+export default async function DevlogPostPage({ params }) {
+  const { slug } = await params;
+  const post = getDevlogPost(slug);
+  if (!post) notFound();
 
   return (
     <main className="devlog-post">
@@ -30,10 +25,7 @@ export default function DevlogPostPage({ params }) {
       </Link>
       <time>{post.date}</time>
       <h1>{post.title}</h1>
-      <div
-        className="devlog-body"
-        dangerouslySetInnerHTML={{ __html: post.html }}
-      />
+      <div className="devlog-body">{post.body}</div>
     </main>
   );
 }
