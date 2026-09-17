@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getAllDevlogPosts } from "@/lib/devlog";
+import screenshotHero from "@/public/screenshot-hero.jpg";
 
 export default function HomePage() {
   const posts = getAllDevlogPosts().slice(0, 3);
@@ -11,12 +13,25 @@ export default function HomePage() {
         <h1>Paranoia</h1>
         <p className="tagline">見るたびに、世界が変わる</p>
 
-        <div className="static-box" aria-hidden="true">
-          <span className="static-box-label">NO SIGNAL</span>
+        <div className="screenshot-frame">
+          <Image
+            src={screenshotHero}
+            alt="監視モニターに囲まれたデスク。中央の画面には霧の森の小道と人影、手元では報告書に記入している"
+            placeholder="blur"
+            sizes="(max-width: 720px) 100vw, 720px"
+            priority
+          />
         </div>
 
         <div className="cta-row">
-          <span className="cta disabled">itch.io（準備中）</span>
+          <a
+            className="cta"
+            href="https://lvncer.itch.io/paranoia-rougelike-observation-2d-alpha"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            itch.ioで遊ぶ
+          </a>
           <span className="cta disabled">Steam（準備中）</span>
           <span className="cta disabled">X / Twitter（準備中）</span>
         </div>
@@ -38,6 +53,20 @@ export default function HomePage() {
           <li>安堵</li>
         </ul>
         <p className="loop-caption">このループが、毎回違う異常で繰り返される。</p>
+      </section>
+
+      <section className="story">
+        <h2>Story</h2>
+        <p>
+          ロシアのどこか、地図には載らない監視区画。
+          あなたは深夜だけそこを見張る契約警備員で、渡された仕事は「設備点検」としか聞かされていない。
+        </p>
+        <p>
+          モニターに映るのは、いつもと変わらないはずの森と、古い小屋と、一本道。
+          だが夜が更けるほど、画面の中の何かが少しずつ違って見えはじめる。
+        </p>
+        <p className="story-hook">見ているつもりで、見られているのかもしれない。</p>
+        <p className="story-note">世界観の詳細は開発中。devlogで少しずつ公開していきます。</p>
       </section>
 
       <section className="devlog-preview">

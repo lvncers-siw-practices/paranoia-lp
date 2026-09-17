@@ -98,55 +98,33 @@ main {
   margin-top: 0.5rem;
 }
 
-.static-box {
+.screenshot-frame {
   margin: 2.5rem auto 2rem;
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 4 / 3;
+  max-width: 100%;
   border: 1px solid var(--border);
   border-radius: 4px;
-  position: relative;
   overflow: hidden;
-  background: repeating-linear-gradient(
-      0deg,
-      #1a1f19 0px,
-      #1a1f19 1px,
-      #0e120d 2px,
-      #0e120d 3px
-    ),
-    linear-gradient(180deg, #14180f, #090b08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 0 32px rgba(94, 255, 143, 0.12);
 }
 
-.static-box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(94, 255, 143, 0.08) 50%,
-    transparent 60%
-  );
-  animation: scan 5s linear infinite;
+.screenshot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-@keyframes scan {
-  from {
-    transform: translateX(-30%);
-  }
-  to {
-    transform: translateX(30%);
-  }
+.cta {
+  cursor: pointer;
 }
 
-.static-box-label {
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  color: var(--fg-dim);
-  z-index: 1;
+a.cta {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
+a.cta:hover {
+  text-decoration: none;
+  background: rgba(94, 255, 143, 0.08);
 }
 
 .cta-row {
@@ -176,6 +154,7 @@ main {
 }
 
 .concept h2,
+.story h2,
 .devlog-preview h2,
 .devlog-index h1,
 .devlog-post h1 {
@@ -204,6 +183,26 @@ main {
 .loop-caption {
   color: var(--fg-dim);
   font-size: 0.85rem;
+}
+
+.story {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.story p {
+  margin: 0.9rem 0;
+  color: var(--fg);
+}
+
+.story-hook {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.story-note {
+  color: var(--fg-dim) !important;
+  font-size: 0.8rem;
 }
 
 /* Devlog preview / index */
